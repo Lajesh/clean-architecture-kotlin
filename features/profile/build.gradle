@@ -1,0 +1,67 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs.kotlin'
+}
+
+apply from: "$rootProject.projectDir/commons.gradle"
+apply from: "$rootProject.projectDir/commons.features.gradle"
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        minSdkVersion 25
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+
+    flavorDimensions "server"
+
+    productFlavors {
+
+        dev {
+            dimension "server"
+        }
+
+        uat {
+            dimension "server"
+        }
+
+        pilot {
+            dimension "server"
+        }
+
+        prod {
+            dimension "server"
+        }
+    }
+
+    publishNonDefault true
+
+    buildFeatures {
+        dataBinding true
+    }
+}

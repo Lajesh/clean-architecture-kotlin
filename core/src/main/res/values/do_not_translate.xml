@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CleanArchApp</string>
+    <string name="lang_english" translatable="false">English</string>
+    <string name="lang_arabic" translatable="false">عربى</string>
+</resources>

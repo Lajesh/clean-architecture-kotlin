@@ -1,0 +1,9 @@
+include ':thirdpartys:analyticslib'
+include ':features:onboarding'
+include ':features:profile'
+include ':core'
+include ':benchmark'
+include ':data'
+include ':domain'
+include ':app'
+rootProject.name = "CleanArchApp"
