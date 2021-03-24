@@ -4,7 +4,7 @@ It has been over an year i am using Clean architecture for enterprise mobile app
 
 This boilerplate project is created to serve as an architectural template which can be used for highly scalable enterprise mobile applications.
 
-Below are the design considerations that i have take while creating the boilerplate project.
+Below are the design considerations that i have taken while creating the boilerplate project.
 
 - Independent of framework
 - Testable
@@ -55,7 +55,7 @@ May be at that time the view reference might be destroyed or might be an old act
 I have been using databinding extensively throughout all my projects and i am a great fan of it. Databinding brings a balance between View and ViewModel (Someone might not agree with me on this :D)
 When i was starting this boilerplate, there was a confusion whether to go with databinding or viewbinding, both are for the similar purpose. The additional advantage of databinding is that you can bind data directly in your view xml, so that means
 you don't need to access a view in the Fragment / Activity to set the data which eliminates lots of boilerplate code. This is one of the main reason why i chose databinding over viewbinding. If you are using databinding in ur project,
-you can make sure that your view class will not grow beyond a size as you are distributing ur logic with view xml, View class and ViewModel. 
+you can make sure that your view class will not grow beyond a size as you are distributing your logic with view xml, View class and ViewModel. 
 
 Since Google has introduced architectural components, LiveData is the solution for reactive stream and its lifecycle aware too. But in this template i am using a combination of two reactive streams which is Kotlin Flow and LiveData.
 Kotlin flow is being used a reactive stream in my business layer and the same has been converted to LiveData in the ViewModel to support databinding. Kotlin flow support for databinding is in alpha now, once that becomes stable we can remove LiveData completely.
@@ -111,7 +111,7 @@ Let me detail about the questions that i had in my mind when i was thinking abou
 
 ### Design Consideration
 
-I have decided to use nested navigation graph approach. So here i have a main navigation graph which is located in the app module and then i have individual navigation graph for each feature modules.
+I have decided to use nested navigation graph approach. So here i have a main navigation graph, which is located in the app module and then i have individual navigation graph for each feature modules.
 The main navigation graph includes all other child navigation graphs.
 
 <img src="/screenshots/main_nav_graph.png" alt="Navigation Graph"/>
