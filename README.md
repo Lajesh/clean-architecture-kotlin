@@ -174,11 +174,11 @@ we need to define a deeplink to that particular destination like below.
 #### How to share data between fragments in a Single activity architecture ?
 
 Before architectural components, we have used bundles for data sharing between fragments and after the introduction of AAC, we have created viewModel in the activity scope 
-and used to keep all the data there which we want to share between fragments. This pattern is Okay, if you are designing your applicatio in such a way that you will be creating seperate activities based on each flow and the data sharing needs and at the end you will be having multiple sharedviewmodels instead of a single one which holds all the data.
+and used to keep all the data there which we want to share between fragments. This pattern is Okay, if you are designing your applicatio in such a way that you will be creating seperate activities based on each flow and at the end you will be having multiple shared viewmodels instead of a single one which holds all the data.
 
-But here the Navigation Jetpack enforces single activity pattern, so we should not create multiple activities anymore. In that case,can we have a single shared viewmodel and hold everything there. Of course, No. If you are thing in that way you doen't even need a sharedviewmodel, you can simply create singleton class and keep everything there.
+But here the Navigation Jetpack enforces single activity pattern, so we should not create multiple activities anymore. In that case, can we have a single shared viewmodel and hold everything there. Of course, No. If you are thinking in that way you don't even need a shared viewmodel, you can simply create singleton class and keep everything there.
 
-So the best practice here is to create a ViewModel that's scoped to a navigation graph, enabling you to share UI-related data between the graph's destinations. Any ViewModel objects created in this way live until the associated NavHost and its ViewModelStore are cleared or until the navigation graph is popped from the back stack. Ktx provides a new sweet extension called navGraphViewModels.
+So the best practice here is to create a ViewModel that's scoped to a navigation graph, enabling you to share UI-related data between the graph's destinations. Any ViewModel objects created in this way live until the associated NavHost and its ViewModelStore are cleared or until the navigation graph is popped from the back stack. Ktx provides a new sweet extension called navGraphViewModels for the same.
 
 So lets say for example if you want to share data between fragments in the onboarding module, you can create a viewModel scoped to its navigation graph like below.
 ```
