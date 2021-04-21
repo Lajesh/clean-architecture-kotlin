@@ -1,4 +1,4 @@
-package com.template.core.di.module.application
+package com.template.cleanarch.di.module
 
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module

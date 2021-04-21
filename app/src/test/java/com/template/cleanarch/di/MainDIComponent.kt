@@ -1,6 +1,6 @@
 package com.template.cleanarch.di
 
-import com.template.core.di.module.application.ApiModule
+import com.template.data.di.ApiModule
 import com.template.data.di.RepositoryModule
 import com.template.domain.di.UseCaseModule
 

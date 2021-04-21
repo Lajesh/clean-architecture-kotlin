@@ -1,4 +1,4 @@
-package com.template.core.di.module.application
+package com.template.data.di
 
 import com.template.data.datasource.remote.api.IAuthApi
 import org.koin.core.context.loadKoinModules
