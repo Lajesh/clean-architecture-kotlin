@@ -4,7 +4,7 @@ It has been over an year i am using Clean architecture for enterprise mobile app
 
 This boilerplate project is created to serve as an architectural template which can be used for highly scalable enterprise mobile applications.
 
-Below are the design considerations that i have take while creating the boilerplate project.
+Below are the design considerations that i have taken while creating the boilerplate project.
 
 - Independent of framework
 - Testable
@@ -55,7 +55,7 @@ May be at that time the view reference might be destroyed or might be an old act
 I have been using databinding extensively throughout all my projects and i am a great fan of it. Databinding brings a balance between View and ViewModel (Someone might not agree with me on this :D)
 When i was starting this boilerplate, there was a confusion whether to go with databinding or viewbinding, both are for the similar purpose. The additional advantage of databinding is that you can bind data directly in your view xml, so that means
 you don't need to access a view in the Fragment / Activity to set the data which eliminates lots of boilerplate code. This is one of the main reason why i chose databinding over viewbinding. If you are using databinding in ur project,
-you can make sure that your view class will not grow beyond a size as you are distributing ur logic with view xml, View class and ViewModel. 
+you can make sure that your view class will not grow beyond a size as you are distributing your logic with view xml, View class and ViewModel. 
 
 Since Google has introduced architectural components, LiveData is the solution for reactive stream and its lifecycle aware too. But in this template i am using a combination of two reactive streams which is Kotlin Flow and LiveData.
 Kotlin flow is being used a reactive stream in my business layer and the same has been converted to LiveData in the ViewModel to support databinding. Kotlin flow support for databinding is in alpha now, once that becomes stable we can remove LiveData completely.
@@ -108,10 +108,11 @@ Let me detail about the questions that i had in my mind when i was thinking abou
 - If i am using multiple navigation graph (per each feature module), how to navigate to other modules navigation graph ?
 - How to go back to a fragment which belongs to a different feature module ?
 - How to navigate to a fragment which belongs to another feature module, but that's not the start destination ? 
+- Since Navigation jetpack enforces single activity pattern, how i am going to share data between fragments ? A single sharedviewModel in activity scope ? Ohh.. No. Thats not a good approach at all. So whats the alternative ?
 
 ### Design Consideration
 
-I have decided to use nested navigation graph approach. So here i have a main navigation graph which is located in the app module and then i have individual navigation graph for each feature modules.
+I have decided to use nested navigation graph approach. So here i have a main navigation graph, which is located in the app module and then i have individual navigation graph for each feature modules.
 The main navigation graph includes all other child navigation graphs.
 
 <img src="/screenshots/main_nav_graph.png" alt="Navigation Graph"/>
@@ -169,6 +170,20 @@ we need to define a deeplink to that particular destination like below.
 
 ##### onboarding feature module
 <img src="/screenshots/deeplink_onboarding.png" alt=""/>
+
+#### How to share data between fragments in a Single activity architecture ?
+
+Before architectural components, we have used bundles for data sharing between fragments and after the introduction of AAC, we have created viewModel in the activity scope 
+and used to keep all the data there which we want to share between fragments. This pattern is Okay, if you are designing your applicatio in such a way that you will be creating seperate activities based on each flow and at the end you will be having multiple shared viewmodels instead of a single one which holds all the data.
+
+But here the Navigation Jetpack enforces single activity pattern, so we should not create multiple activities anymore. In that case, can we have a single shared viewmodel and hold everything there. Of course, No. If you are thinking in that way you don't even need a shared viewmodel, you can simply create singleton class and keep everything there.
+
+So the best practice here is to create a ViewModel that's scoped to a navigation graph, enabling you to share UI-related data between the graph's destinations. Any ViewModel objects created in this way live until the associated NavHost and its ViewModelStore are cleared or until the navigation graph is popped from the back stack. Ktx provides a new sweet extension called navGraphViewModels for the same.
+
+So lets say for example if you want to share data between fragments in the onboarding module, you can create a viewModel scoped to its navigation graph like below.
+```
+ val onboardingSharedViewModel by navGraphViewModels(R.id.onboarding_nav_graph)
+```
 
 ## Tech stack
 
