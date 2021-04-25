@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder
 import com.template.data.constants.NetworkConstants
 import com.template.data.datasource.remote.dto.ErrorDto
 import com.template.domain.common.ResultState
-import com.template.domain.entity.common.ErrorEntity
+import com.template.domain.entity.response.common.ErrorEntity
 import kotlinx.coroutines.delay
 import okhttp3.ResponseBody
 import retrofit2.HttpException

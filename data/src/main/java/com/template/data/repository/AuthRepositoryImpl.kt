@@ -6,6 +6,7 @@ import com.template.data.mapper.dtotoentity.map
 import com.template.domain.common.ResultState
 import com.template.domain.entity.common.CommonEntity
 import com.template.domain.entity.request.AuthRequest
+import com.template.domain.entity.response.auth.AuthEntity
 import com.template.domain.repository.IAuthRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -22,13 +23,13 @@ import kotlinx.coroutines.flow.flowOn
 class AuthRepositoryImpl(private val authApi: IAuthApi, private val branchDao: BranchDao) : BaseRepositoryImpl(), IAuthRepository {
     override fun signIn(
         signinRequest: AuthRequest.SigninRequest
-    ): Flow<ResultState<CommonEntity.CommonResponse<Void>>> = flow {
+    ): Flow<ResultState<AuthEntity.LoginResponse>> = flow {
         emit(apiCall { authApi.signIn(signinRequest).map() })
     }.flowOn(Dispatchers.IO)
 
     override fun signUp(
         signupRequest: AuthRequest.SignupRequest
-    ): Flow<ResultState<CommonEntity.CommonResponse<Void>>>  = flow {
-           emit(apiCall { authApi.signUp(signupRequest).map() })
+    ): Flow<ResultState<CommonEntity.CommonResponse<String>>>  = flow {
+           emit(apiCall { authApi.signUp(signupRequest).map()})
     }.flowOn(Dispatchers.IO)
 }

@@ -1,7 +1,9 @@
 package com.template.data.mapper.dtotoentity
 
+import com.template.data.datasource.remote.dto.AuthDto
 import com.template.data.datasource.remote.dto.CommonDto
 import com.template.domain.entity.common.CommonEntity
+import com.template.domain.entity.response.auth.AuthEntity
 
 /**
  * Keep all the DTO to Entity Mapping here

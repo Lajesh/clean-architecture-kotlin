@@ -1,6 +1,6 @@
 package com.template.domain.common
 
-import com.template.domain.entity.common.ErrorEntity
+import com.template.domain.entity.response.common.ErrorEntity
 
 /**
  * A wrapper for database and network states.

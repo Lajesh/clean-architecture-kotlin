@@ -2,21 +2,12 @@ package com.template.cleanarch
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.template.cleanarch.base.BaseTest
-import com.template.core.utils.NavigationCommand
-import com.template.domain.entity.common.ErrorEntity
-import com.template.domain.usecases.auth.AuthUseCaseImpl
 import com.template.domain.usecases.auth.IAuthUseCase
-import com.template.feature_onboarding.view.fragment.signin.LoginFragmentDirections
 import com.template.feature_onboarding.view.fragment.signin.LoginViewModel
 import junit.framework.Assert.assertTrue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.DelayController
 import kotlinx.coroutines.test.runBlockingTest
 import okhttp3.mockwebserver.MockWebServer
-import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert
 import org.junit.Rule
 import org.junit.Test

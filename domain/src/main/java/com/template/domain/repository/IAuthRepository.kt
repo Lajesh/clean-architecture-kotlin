@@ -3,6 +3,7 @@ package com.template.domain.repository
 import com.template.domain.common.ResultState
 import com.template.domain.entity.common.CommonEntity
 import com.template.domain.entity.request.AuthRequest
+import com.template.domain.entity.response.auth.AuthEntity
 import kotlinx.coroutines.flow.Flow
 
 /****
@@ -14,7 +15,7 @@ import kotlinx.coroutines.flow.Flow
  *****/
 interface IAuthRepository {
 
-    fun signIn(signinRequest: AuthRequest.SigninRequest) : Flow<ResultState<CommonEntity.CommonResponse<Void>>>
+    fun signIn(signinRequest: AuthRequest.SigninRequest) : Flow<ResultState<AuthEntity.LoginResponse>>
 
-    fun signUp(signupRequest: AuthRequest.SignupRequest) : Flow<ResultState<CommonEntity.CommonResponse<Void>>>
+    fun signUp(signupRequest: AuthRequest.SignupRequest) : Flow<ResultState<CommonEntity.CommonResponse<String>>>
 }

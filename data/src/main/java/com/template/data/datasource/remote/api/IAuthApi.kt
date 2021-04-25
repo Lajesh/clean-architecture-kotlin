@@ -1,5 +1,6 @@
 package com.template.data.datasource.remote.api
 
+import com.template.data.datasource.remote.dto.AuthDto
 import com.template.data.datasource.remote.dto.CommonDto
 import com.template.domain.entity.request.AuthRequest
 import kotlinx.coroutines.flow.Flow
@@ -17,8 +18,8 @@ import retrofit2.http.POST
 interface IAuthApi {
 
     @POST("login")
-    suspend fun signIn(@Body signinRequest: AuthRequest.SigninRequest) : CommonDto.CommonResponse<Void>
+    suspend fun signIn(@Body signinRequest: AuthRequest.SigninRequest) : AuthDto.LoginResponse
 
     @POST("signup")
-    suspend fun signUp(@Body signupRequest: AuthRequest.SignupRequest) : CommonDto.CommonResponse<Void>
+    suspend fun signUp(@Body signupRequest: AuthRequest.SignupRequest) : CommonDto.CommonResponse<String>
 }

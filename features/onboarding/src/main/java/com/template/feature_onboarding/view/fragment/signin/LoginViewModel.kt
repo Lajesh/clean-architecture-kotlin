@@ -7,6 +7,7 @@ import com.template.core.utils.NavigationCommand
 import com.template.core.viewmodel.base.BaseViewModel
 import com.template.domain.common.ResultState
 import com.template.domain.entity.request.AuthRequest
+import com.template.domain.entity.response.auth.AuthEntity
 import com.template.domain.usecases.auth.IAuthUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -25,6 +26,7 @@ class LoginViewModel constructor(
 ) : BaseViewModel() {
 
     val data = MutableLiveData(false)
+    val userDetails = MutableLiveData<AuthEntity.UserDetails>()
 
     private var likeCount = 0
 
@@ -37,13 +39,35 @@ class LoginViewModel constructor(
         }
     }
 
-    fun login() {
+    fun signup() {
         showLoading(true)
         viewModelScope.launch {
             authUseCase.signUp(AuthRequest.SignupRequest("", "dasdasd", true))
                 .collect { state ->
                     when (state) {
                         is ResultState.Success -> {
+                          login()
+                        }
+
+                        is ResultState.Error -> {
+                            setError(error = state.error)
+                            showLoading(false)
+                        }
+                    }
+
+                }
+
+        }
+    }
+
+    fun login() {
+        showLoading(true)
+        viewModelScope.launch {
+            authUseCase.signIn(AuthRequest.SigninRequest("test@test.com", "dasdasd", 0, false))
+                .collect { state ->
+                    when (state) {
+                        is ResultState.Success -> {
+                            userDetails.value =  state.data.userDetails
                             data.value = true
                             showLoading(false)
                             navigationCommands.value =

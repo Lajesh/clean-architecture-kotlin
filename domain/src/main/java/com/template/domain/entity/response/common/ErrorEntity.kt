@@ -1,4 +1,4 @@
-package com.template.domain.entity.common
+package com.template.domain.entity.response.common
 
 /****
  * Keep all the error related model class here

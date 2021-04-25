@@ -9,7 +9,7 @@ import com.template.core.arc.SingleLiveEvent
 import com.template.core.utils.NavigationCommand
 import com.template.core.viewmodel.SharedViewModel
 import com.template.core.viewmodel.ToolbarPropertyViewModel
-import com.template.domain.entity.common.ErrorEntity
+import com.template.domain.entity.response.common.ErrorEntity
 
 /****
  * Base view model. All the common implementation of viewmodel goes here
