@@ -80,8 +80,8 @@ android {
 
 dependencies {
 
-    implementation project(':domain')
-    implementation project(':data')
+    api project(':domain')
+    api project(':data')
     implementation project(':thirdpartys:analyticslib')
 
     // Koin AndroidX Scope features
